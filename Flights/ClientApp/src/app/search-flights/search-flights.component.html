@@ -1,0 +1,77 @@
+<h5 class="text-md-center m-5">Search for Flights</h5>
+
+<div class="m-5 d-grid g-3">
+  <div class="row mb-2">
+    <div class="col">
+      <div class="form-floating">
+        <input class="form-control" placeholder="From" />
+        <label class="text-primary form-label">Fro</label>
+      </div>
+    </div>
+    <div class="col">
+      <div class="form-floating">
+        <input class="form-control" placeholder="Destination" />
+        <label class="text-primary form-label">Destination</label>
+      </div>
+    </div>
+  </div>
+  <div class="row mb-2">
+    <div class="col">
+      <div class="form-floating">
+        <input class="form-control" type="date" placeholder="From Data" />
+        <label class="text-primary form-label">Fro Data</label>
+      </div>
+    </div>
+    <div class="col">
+      <div class="form-floating">
+        <input class="form-control" type="date" placeholder="To Data" />
+        <label class="text-primary form-label">To Data</label>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col text-end">
+      <label class="form-label text-primary mt-2">Number of Passengers</label>
+    </div>
+    <div class="col">
+      <div class="input-group">
+        <div class="input-group-text">For</div>
+        <input class="form-control" type="number" min="1" placeholder="1" />
+        <div class="input-group-text">Passengers</div>
+        <button class="btn-primary btn" type="submit">
+          <i class="fas fa-search"></i>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div *ngFor="let flight of searchResults">
+  <div class="card text-dark mt-5 text-center">
+    <div class="card-body">
+      <h6 class="card-title">{{flight.airline}}</h6>
+      <div class="card-title text-danger">{{flight.remainingNumberOfSeats}} remaining seats</div>
+
+      <div class="d-grid text-center g-2">
+        <div class="row">
+          <div class="col">
+            <div class="col m-3">
+              <i class=" text-primary fas fa-plane-departure" style="font-size: 20px;"></i>
+            </div>
+          </div>
+          <div class="col">
+
+          </div>
+          <div class="col">
+
+          </div>
+          <div class="col">
+
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>

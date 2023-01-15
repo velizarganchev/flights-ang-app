@@ -7,7 +7,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SearchFlightsComponent implements OnInit {
 
-  searchResults: FlightRm[] = [
+  searchResult: FlightRm[] = [
     {
       airline: "American Airlines",
       remainingNumberOfSeats: 500,

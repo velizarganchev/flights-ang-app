@@ -5,19 +5,15 @@ namespace Flights.Controllers
 {
     [ApiController]
     [Route("[controller]")]
+    [ProducesResponseType(400)]
+    [ProducesResponseType(500)]
     public class FlightController : ControllerBase
     {
-        Random random = new Random();
         private readonly ILogger<FlightController> _logger;
 
-        public FlightController(ILogger<FlightController> logger)
-        {
-            _logger = logger;
-        }
+        static Random random = new Random();
 
-
-        [HttpGet]
-        public IEnumerable<FlightRm> Search() => new FlightRm[]
+        private static FlightRm[] flights = new FlightRm[]
         {
 
         new (   Guid.NewGuid(),
@@ -69,5 +65,28 @@ namespace Flights.Controllers
                 new TimePlaceRm("Zagreb",DateTime.Now.AddHours(random.Next(4, 60))),
                     random.Next(1, 853))
             };
+
+        public FlightController(ILogger<FlightController> logger)
+        {
+            _logger = logger;
+        }
+
+
+        [HttpGet]
+        [ProducesResponseType(typeof(IEnumerable<FlightRm>), 200)]
+        public IEnumerable<FlightRm> Search() => flights;
+
+        [HttpGet("{id}")]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(typeof(FlightRm), 200)]
+        public ActionResult<FlightRm> Find(Guid id)
+        {
+            var flight = flights.SingleOrDefault(f => f.Id == id);
+            if (flight == null)
+                return NotFound();
+
+            return Ok(flight);
+        }
+
     }
 }
